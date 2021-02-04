@@ -7,6 +7,9 @@
   <link rel="stylesheet" href="index.css">
 </head>
 <body>
+<video playsinline autoplay muted loop poster="img/background.png" id="bgvid">
+  <source src="vid/background.mp4" type="video/mp4">
+</video>
   <div class="navbar">
     <img class ="fpicon" src="img/FP_icon.png" alt="FP_icon">
     <h1 class = "navtitle"> City Travel </h1>
@@ -14,7 +17,12 @@
 
   <div class="searchcontainer">
     <input type="search" id="searchbox" class="searchbox">
-    <input type="button" id="searchbutton" value="Search" class="searchbutton">
+    <input type="button" id="searchbutton" value="Go" class="searchbutton">
+    <div>
+    <input type="checkbox" id="onlyweatherbox" value="Only Weather"/><label for="Only Weather">Only Weather</label>
+    <input type="checkbox" id="onlyattractions" value="Only Attractions"/><label for="Only Attractions">Only Attractions</label>
+    <input type="checkbox" id="filteralpha" value="Filter alphabetically"/><label for="Filter alphabetically">Filter alphabetically</label>
+    </div>
   </div>
 
   <div class=footer>
