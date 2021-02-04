@@ -2,3 +2,58 @@
   margin: 0;
   padding: 0;
 }
+
+body{
+ background-image: url("img/background.png");
+ background-color: #cccccc;
+}
+
+.navbar{
+  background-color: #333;
+  color: white;
+  padding: 20px;
+}
+
+.fpicon{
+ float: left;
+ margin-left: 50px;
+}
+.navtitle{
+  margin-left: 100px;
+  font-family: 'Lato', sans-serif;
+}
+
+.searchcontainer{
+  text-align: center;
+  margin-top: 80px;
+}
+
+.searchbox{
+ width: 250px;
+ height: 30px;
+}
+
+.searchbutton{
+ width: 100px;
+ height: 30px;
+ background-color: #333;
+ color: white;
+}
+
+.searchbutton:hover{
+ background-color: #333;
+}
+
+.footer{
+  background-color: #333;
+  color: white;
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+}
+
+.footer > *{
+  text-align: center;
+  padding: 5px;
+  font-family: 'Lato', sans-serif;
+  }
