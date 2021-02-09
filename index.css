@@ -3,60 +3,60 @@
   padding: 0;
 }
 
-body{
- background-image: url("img/background.png");
- background-color: #cccccc;
+body {
+  background-image: url("img/background.png");
+  background-color: #cccccc;
 }
 
-video{
+video {
   position: fixed;
   z-index: -1;
 }
 
-.navbar{
+.navbar {
   background-color: #333;
   color: white;
   padding: 20px;
 }
 
-.fpicon{
- float: left;
- margin-left: 50px;
+.fpicon {
+  float: left;
+  margin-left: 50px;
 }
-.navtitle{
+.navtitle {
   margin-left: 100px;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
 }
 
-.searchcontainer{
+.searchcontainer {
   margin-top: 170px;
   float: center;
   text-align: center;
 }
 
-.searchbox{
- width: 250px;
- height: 30px;
- text-align: center;
+.searchbox {
+  width: 250px;
+  height: 30px;
+  text-align: center;
 }
 
-.searchbutton{
- width: 70px;
- height: 30px;
- background-color: #333;
- color: white;
+.searchbutton {
+  width: 70px;
+  height: 30px;
+  background-color: #333;
+  color: white;
 }
 
-.searchbutton:hover{
- background-color: rgb(121, 121, 121);
+.searchbutton:hover {
+  background-color: rgb(121, 121, 121);
 }
 
-label{
-  background-color:rgba(0,0,0,0.5);
-  color:white;
+label {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
 }
 
-.footer{
+.footer {
   background-color: #333;
   color: white;
   bottom: 0;
@@ -64,69 +64,69 @@ label{
   width: 100%;
 }
 
-h2{
+h2 {
   color: White;
   font-size: 40px;
   text-align: center;
   margin-top: 40px;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: bold;
 }
 
-.weathercontainer{
+.weathercontainer {
   display: flex;
   justify-content: center;
   margin-top: 20px;
 }
 
-.weathercontainer > div{
+.weathercontainer > div {
   width: 200px;
   margin: 10px;
-  background-color:rgba(0,0,0,0.5);
-  border: 3px solid rgba(0,0,0,0.6);
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 3px solid rgba(0, 0, 0, 0.6);
   border-radius: 10%;
 }
 
-.weathericon{
+.weathericon {
   margin-top: 15px;
 }
 
-.flexcontainer{
+.flexcontainer {
   display: flex;
   justify-content: center;
 }
 
-.flexcontainer > div{
+.flexcontainer > div {
   width: 200px;
   height: 200px;
   margin: 10px;
-  background-color:rgba(0,0,0,0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   border: 3px solid #333;
   border-radius: 10%;
 }
 
-.footer > div{
+.footer > div {
   text-align: center;
   padding: 5px;
-  font-family: 'Lato', sans-serif;
-  }
+  font-family: "Lato", sans-serif;
+}
 
-  @media (min-aspect-ratio: 16/9) {
-    video {
-        width:100%;
-        height: auto;
-    }
+@media (min-aspect-ratio: 16/9) {
+  video {
+    width: 100%;
+    height: auto;
+  }
 }
 
 @media (max-aspect-ratio: 16/9) {
-    video { 
-        width:auto;
-        height: 100%;
-    }
+  video {
+    width: auto;
+    height: 100%;
+  }
 }
 
 @media (max-width: 767px) {
-    video {
-        display: none;
-    }
+  video {
+    display: none;
+  }
 }

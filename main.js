@@ -1,6 +1,16 @@
 let searchBox = document.getElementById("searchbox");
 let searchButton = document.getElementById("searchbutton");
 
+let today = new Date();
+let date =
+  today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+
+let titleName = document.getElementById("titlename");
+let currentWeather = document.getElementById("currentweather");
+let currentDate = document.getElementById("currentdate");
+let currentTemp = document.getElementById("currenttemp");
+let currentCondition = document.getElementById("currentcondition");
+
 searchButton.addEventListener("click", searchevent);
 
 searchBox.addEventListener("keyup", function (event) {
@@ -25,7 +35,9 @@ function searchevent() {
       let desc = data["weather"][0]["description"];
 
       console.log(data);
-      alert(name + temp + desc);
+      currentDate.innerText = date;
+      currentWeather.innerText = desc;
+      currentTemp.innerText = temp;
     });
 
   fetch(
@@ -40,6 +52,6 @@ function searchevent() {
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
-      alert(data.response.geocode.displayString);
+      titleName.innerText = data.response.geocode.displayString;
     });
 }
