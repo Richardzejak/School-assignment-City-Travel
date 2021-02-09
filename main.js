@@ -1,6 +1,8 @@
 let searchBox = document.getElementById("searchbox");
 let searchButton = document.getElementById("searchbutton");
 
+let constructedSite=false;
+
 let today = new Date();
 let date =
   today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
@@ -22,6 +24,12 @@ let foursquareClientId = "IZ3NBJGEKK10NHXIDEO2RNJCKZDVBLXPINPFJE0HGFCMIMUY";
 let foursquareClientSecret = "IOGQ3CXWYRMRNWTXV1BDCI2PVEMR3MAPRTBULCKVAGMRZF0Y";
 
 function searchevent() {
+  if (constructedSite==false)
+  {
+    siteconstructor();
+  }
+  else
+  {
   fetch(
     "https://api.openweathermap.org/data/2.5/weather?&units=metric&q=" +
       searchBox.value +
@@ -35,9 +43,9 @@ function searchevent() {
       let desc = data["weather"][0]["description"];
 
       console.log(data);
-      currentDate.innerText = date;
-      currentWeather.innerText = desc;
-      currentTemp.innerText = temp;
+      currentDate.innerText = "Date: " + date;
+      currentWeather.innerText = "Weather: " + desc;
+      currentTemp.innerText = "Temperature: " + temp + " C °";
     });
 
   fetch(
@@ -54,4 +62,17 @@ function searchevent() {
       console.log(data);
       titleName.innerText = data.response.geocode.displayString;
     });
+}
+}
+
+function siteconstructor()
+{
+
+  let element = Document.createElement("div");
+  element.class = "flexbox-container";
+  var parent = document.getElementById("constructor-placeholder");
+  parent.appendChild(element);
+
+  constructedSite=true;
+  searchevent();
 }
