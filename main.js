@@ -24,6 +24,18 @@ let currentDate = document.getElementById("currentdate");
 let currentTemp = document.getElementById("currenttemp");
 let currentCondition = document.getElementById("currentcondition");
 
+let a1name = document.getElementById("a1name");
+let a1adress = document.getElementById("a1adress");
+let a1category = document.getElementById("a1category");
+
+let a2name = document.getElementById("a2name");
+let a2adress = document.getElementById("a2adress");
+let a2category = document.getElementById("a2category");
+
+let a3name = document.getElementById("a3name");
+let a3adress = document.getElementById("a3adress");
+let a3category = document.getElementById("a3category");
+
 document.getElementById("flexbox-container").style.visibility = "hidden";
 
 searchButton.addEventListener("click", searchevent);
@@ -81,24 +93,36 @@ function searchevent() {
       .then((data) => {
         console.log(data);
         titleName.innerText = data.response.geocode.displayString;
+
+        a1name.innerText = data.response.groups[0].items[0].venue.name;
+        a1adress.innerText =
+          data.response.groups[0].items[0].venue.location.address +
+          " " +
+          data.response.groups[0].items[0].venue.location.city;
+        a1category.innerText =
+          data.response.groups[0].items[0].venue.categories[0].name;
+
+        a2name.innerText = data.response.groups[0].items[1].venue.name;
+        a2adress.innerText =
+          data.response.groups[0].items[1].venue.location.address +
+          " " +
+          data.response.groups[0].items[1].venue.location.city;
+        a2category.innerText =
+          data.response.groups[0].items[1].venue.categories[0].name;
+
+        a3name.innerText = data.response.groups[0].items[2].venue.name;
+        a3adress.innerText =
+          data.response.groups[0].items[2].venue.location.address +
+          " " +
+          data.response.groups[0].items[2].venue.location.city;
+        a3category.innerText =
+          data.response.groups[0].items[2].venue.categories[0].name;
       });
   }
 }
 
 function siteconstructor() {
   document.getElementById("flexbox-container").style.visibility = "visible";
-
-  /* let element = document.createElement("div");
-  element.class = "flexbox-container";
-  element.id = "flexbox-container";
-  var parent = document.getElementById("constructor-placeholder");
-  parent.appendChild(element);
-
-  element = document.createElement("h2");
-  element.InnerText = "Göteborg";
-  var parent = document.getElementById("flexbox-container");
-  parent.appendChild(element);*/
-
   constructedSite = true;
   searchevent();
 }
