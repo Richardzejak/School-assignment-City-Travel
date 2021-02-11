@@ -24,18 +24,6 @@ let currentDate = document.getElementById("currentdate");
 let currentTemp = document.getElementById("currenttemp");
 let currentCondition = document.getElementById("currentcondition");
 
-let a1name = document.getElementById("a1name");
-let a1adress = document.getElementById("a1adress");
-let a1category = document.getElementById("a1category");
-
-let a2name = document.getElementById("a2name");
-let a2adress = document.getElementById("a2adress");
-let a2category = document.getElementById("a2category");
-
-let a3name = document.getElementById("a3name");
-let a3adress = document.getElementById("a3adress");
-let a3category = document.getElementById("a3category");
-
 document.getElementById("flexbox-container").style.visibility = "hidden";
 
 searchButton.addEventListener("click", searchevent);
@@ -48,6 +36,7 @@ let foursquareClientId = "IZ3NBJGEKK10NHXIDEO2RNJCKZDVBLXPINPFJE0HGFCMIMUY";
 let foursquareClientSecret = "IOGQ3CXWYRMRNWTXV1BDCI2PVEMR3MAPRTBULCKVAGMRZF0Y";
 
 function searchevent() {
+
   if (onlyWeatherBox.checked == true) {
     document.getElementById("attraction-container").style.visibility = "hidden";
   } else {
@@ -62,6 +51,15 @@ function searchevent() {
   if (constructedSite == false) {
     siteconstructor();
   } else {
+
+    if (document.getElementById("attraction-container").childElementCount!== 0)
+    {
+    for(i = 0; i < 3; i++) {
+      document.getElementById("div"+i).remove();
+    }
+  }
+
+
     fetch(
       "https://api.openweathermap.org/data/2.5/weather?&units=metric&q=" +
         searchBox.value +
@@ -78,6 +76,8 @@ function searchevent() {
         currentDate.innerText = "Date: " + date;
         currentWeather.innerText = "Weather: " + desc;
         currentTemp.innerText = "Temperature: " + temp + " C °";
+        console.log(data.weather[0].icon);
+        document.getElementById("weathericon").src = "http://openweathermap.org/img/w/"+data.weather[0].icon+".png";
       });
 
     fetch(
@@ -96,31 +96,32 @@ function searchevent() {
 
         if (filterAlpha.checked == true) {
         } else {
-          a1name.innerText = data.response.groups[0].items[0].venue.name;
-          a1adress.innerText =
-            data.response.groups[0].items[0].venue.location.address +
-            " " +
-            data.response.groups[0].items[0].venue.location.city;
-          a1category.innerText =
-            data.response.groups[0].items[0].venue.categories[0].name;
+          for(i = 0; i < 3; i++) {
+            let element = document.createElement("div");
+            element.id = ("div"+i);
+            let parent = document.getElementById("attraction-container");
+            parent.appendChild(element);
+            
+            element = document.createElement("h4");
+            element.innerText = data.response.groups[0].items[i].venue.name;
+            parent = document.getElementById("div"+i);
+            parent.appendChild(element);
 
-          a2name.innerText = data.response.groups[0].items[1].venue.name;
-          a2adress.innerText =
-            data.response.groups[0].items[1].venue.location.address +
+            element = document.createElement("h5");
+            element.innerText = data.response.groups[0].items[i].venue.location.address +
             " " +
-            data.response.groups[0].items[1].venue.location.city;
-          a2category.innerText =
-            data.response.groups[0].items[1].venue.categories[0].name;
+            data.response.groups[0].items[i].venue.location.city;
+            parent = document.getElementById("div"+i);
+            parent.appendChild(element);
 
-          a3name.innerText = data.response.groups[0].items[2].venue.name;
-          a3adress.innerText =
-            data.response.groups[0].items[2].venue.location.address +
-            " " +
-            data.response.groups[0].items[2].venue.location.city;
-          a3category.innerText =
-            data.response.groups[0].items[2].venue.categories[0].name;
+            element = document.createElement("h5");
+            element.innerText = data.response.groups[0].items[i].venue.categories[0].name;
+            parent = document.getElementById("div"+i);
+            parent.appendChild(element);
+          }
         }
       });
+
   }
 }
 

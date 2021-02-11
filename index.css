@@ -80,6 +80,9 @@ h2 {
 .flexbox-container {
   background-color: rgba(0, 0, 0, 0.2);
   border-radius: 5%;
+  max-width: 800px;
+  margin: 0 auto;
+  margin-top: 50px;
 }
 
 .weathercontainer {
