@@ -67,6 +67,7 @@ function siteconstructor() {
 }
 
 function searchattractions(){
+
   fetch(
     "https://api.foursquare.com/v2/venues/explore?near=" +
       searchBox.value +
@@ -74,7 +75,8 @@ function searchattractions(){
       foursquareClientId +
       "&client_secret=" +
       foursquareClientSecret +
-      "&v=20170109"
+      "&v=20170109" +
+      "&limit=3"
   )
   .then((response) => {
     if (response.ok) {
@@ -87,8 +89,16 @@ function searchattractions(){
       console.log(data);
       titleName.innerText = data.response.geocode.displayString;
 
-      if (filterAlpha.checked == true) {
-      } else {
+      if (filterAlpha.checked == true)
+      {
+        data.response.groups[0].items.sort(data.response.groups[0].items.venue.name[0], data.response.groups[0].items.venue.name[1], data.response.groups[0].items.venue.name[2]);
+      }
+      if (data.response.groups[0].items.length < 1)
+      {
+      alert("Sorry no attractions here.");
+      }
+      else
+      {
         for(i = 0; i < 3; i++) {
           let element = document.createElement("div");
           element.id = ("div"+i);
@@ -112,10 +122,9 @@ function searchattractions(){
           parent = document.getElementById("div"+i);
           parent.appendChild(element);
         }
-      }
+        }
     });
-}
-
+  }
 function searchweather(){
 fetch(
   "https://api.openweathermap.org/data/2.5/weather?&units=metric&q=" +
