@@ -1,48 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>City Travel</title>
-  <link rel="stylesheet" href="index.css">
-</head>
-<body>
-<video playsinline autoplay muted loop poster="img/background.png" id="bgvid">
-  <source src="vid/background.mp4" type="video/mp4">
-</video>
-  <div class="navbar">
-    <img class ="fpicon" src="img/FP_icon.png" alt="FP_icon">
-    <h1 class = "navtitle"> City Travel </h1>
-  </div>
-
-  <div class="searchcontainer">
-    <input type="search" id="searchbox" class="searchbox">
-    <input type="button" id="searchbutton" value="Go" class="searchbutton">
-    <div class="checkboxes">
-    <input type="checkbox" id="onlyweatherbox" value="Only Weather"/><label for="Only Weather">Only Weather</label>
-    <input type="checkbox" id="onlyattractions" value="Only Attractions"/><label for="Only Attractions">Only Attractions</label>
-    <input type="checkbox" id="filteralpha" value="Filter alphabetically"/><label for="Filter alphabetically">Filter alphabetically</label>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>City Travel</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <video
+      playsinline
+      autoplay
+      muted
+      loop
+      poster="img/background.png"
+      id="bgvid"
+    >
+      <source src="vid/background.mp4" type="video/mp4" />
+    </video>
+    <div class="navbar">
+      <img class="fpicon" src="img/FP_icon.png" alt="FP_icon" />
+      <h1 class="navtitle">City Travel</h1>
     </div>
-  </div>
 
-<div class="flexbox-container" id="flexbox-container">
-  <h2 id="titlename">. .</h2>
-  <div class="weathercontainer" id="weather-container">
-   <div>
-    <h5 id="currentdate">.        .</h5>
-    <h5 id="currentweather">.       .<h5>
-      <h5 id="currenttemp">.        .</h5>
-      <img class="weathericon" id="weathericon" src=".">
-   </div>
-  </div>
+    <div class="searchcontainer">
+      <input type="search" id="searchbox" class="searchbox" />
+      <input type="button" id="searchbutton" value="Go" class="searchbutton" />
+      <div class="checkboxes">
+        <input type="checkbox" id="onlyweatherbox" value="Only Weather" /><label
+          for="Only Weather"
+          >Only Weather</label
+        >
+        <input
+          type="checkbox"
+          id="onlyattractions"
+          value="Only Attractions"
+        /><label for="Only Attractions">Only Attractions</label>
+        <input
+          type="checkbox"
+          id="filteralpha"
+          value="Filter alphabetically"
+        /><label for="Filter alphabetically">Filter alphabetically</label>
+      </div>
+    </div>
 
- <div class="flexcontainer" id="attraction-container">
- </div>
-</div>
+    <div class="flexbox-container" id="flexbox-container">
+      <h2 id="titlename">. .</h2>
+      <div class="weathercontainer" id="weather-container"></div>
+      <div class="flexcontainer" id="attraction-container"></div>
+    </div>
 
-  <div class=footer>
-    <h4> Richard Z </h4>
-  </div>
-</body>
-<script src="main.js"></script>
+    <div class="footer">
+      <h4>Richard Z</h4>
+    </div>
+  </body>
+  <script src="main.js"></script>
 </html>

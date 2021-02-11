@@ -37,91 +37,25 @@ let foursquareClientSecret = "IOGQ3CXWYRMRNWTXV1BDCI2PVEMR3MAPRTBULCKVAGMRZF0Y";
 
 function searchevent() {
 
-  if (onlyWeatherBox.checked == true) {
-    document.getElementById("attraction-container").style.visibility = "hidden";
-  } else {
-    document.getElementById("attraction-container").style.visibility =
-      "visible";
-  }
-  if (onlyAttractionsbox.checked == true) {
-    document.getElementById("weather-container").style.visibility = "hidden";
-  } else {
-    document.getElementById("weather-container").style.visibility = "visible";
-  }
-  if (constructedSite == false) {
-    siteconstructor();
-  } else {
-
-    if (document.getElementById("attraction-container").childElementCount!== 0)
-    {
+  if (document.getElementById("attraction-container").childElementCount!== 0)
+  {
     for(i = 0; i < 3; i++) {
-      document.getElementById("div"+i).remove();
+     document.getElementById("div"+i).remove();
     }
   }
 
-
-    fetch(
-      "https://api.openweathermap.org/data/2.5/weather?&units=metric&q=" +
-        searchBox.value +
-        "&appid=" +
-        weatherApiId
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        let name = data["name"];
-        let temp = data["main"]["temp"];
-        let desc = data["weather"][0]["description"];
-
-        console.log(data);
-        currentDate.innerText = "Date: " + date;
-        currentWeather.innerText = "Weather: " + desc;
-        currentTemp.innerText = "Temperature: " + temp + " C °";
-        console.log(data.weather[0].icon);
-        document.getElementById("weathericon").src = "http://openweathermap.org/img/w/"+data.weather[0].icon+".png";
-      });
-
-    fetch(
-      "https://api.foursquare.com/v2/venues/explore?near=" +
-        searchBox.value +
-        "&client_id=" +
-        foursquareClientId +
-        "&client_secret=" +
-        foursquareClientSecret +
-        "&v=20170109"
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        titleName.innerText = data.response.geocode.displayString;
-
-        if (filterAlpha.checked == true) {
-        } else {
-          for(i = 0; i < 3; i++) {
-            let element = document.createElement("div");
-            element.id = ("div"+i);
-            let parent = document.getElementById("attraction-container");
-            parent.appendChild(element);
-            
-            element = document.createElement("h4");
-            element.innerText = data.response.groups[0].items[i].venue.name;
-            parent = document.getElementById("div"+i);
-            parent.appendChild(element);
-
-            element = document.createElement("h5");
-            element.innerText = data.response.groups[0].items[i].venue.location.address +
-            " " +
-            data.response.groups[0].items[i].venue.location.city;
-            parent = document.getElementById("div"+i);
-            parent.appendChild(element);
-
-            element = document.createElement("h5");
-            element.innerText = data.response.groups[0].items[i].venue.categories[0].name;
-            parent = document.getElementById("div"+i);
-            parent.appendChild(element);
-          }
-        }
-      });
-
+  if (constructedSite == false) {
+    siteconstructor();
+  }
+  else{
+    if (onlyWeatherBox.checked == true) {
+      searchweather();
+    } else if (onlyAttractionsbox.checked == true) {
+      searchattractions();
+    } else {
+      searchweather();
+      searchattractions();
+    }
   }
 }
 
@@ -129,4 +63,89 @@ function siteconstructor() {
   document.getElementById("flexbox-container").style.visibility = "visible";
   constructedSite = true;
   searchevent();
+}
+
+function searchattractions(){
+  fetch(
+    "https://api.foursquare.com/v2/venues/explore?near=" +
+      searchBox.value +
+      "&client_id=" +
+      foursquareClientId +
+      "&client_secret=" +
+      foursquareClientSecret +
+      "&v=20170109"
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      titleName.innerText = data.response.geocode.displayString;
+
+      if (filterAlpha.checked == true) {
+      } else {
+        for(i = 0; i < 3; i++) {
+          let element = document.createElement("div");
+          element.id = ("div"+i);
+          let parent = document.getElementById("attraction-container");
+          parent.appendChild(element);
+          
+          element = document.createElement("h4");
+          element.innerText = data.response.groups[0].items[i].venue.name;
+          parent = document.getElementById("div"+i);
+          parent.appendChild(element);
+
+          element = document.createElement("h5");
+          element.innerText = data.response.groups[0].items[i].venue.location.address +
+          " " +
+          data.response.groups[0].items[i].venue.location.city;
+          parent = document.getElementById("div"+i);
+          parent.appendChild(element);
+
+          element = document.createElement("h5");
+          element.innerText = data.response.groups[0].items[i].venue.categories[0].name;
+          parent = document.getElementById("div"+i);
+          parent.appendChild(element);
+        }
+      }
+    });
+}
+
+function searchweather(){
+fetch(
+  "https://api.openweathermap.org/data/2.5/weather?&units=metric&q=" +
+    searchBox.value +
+    "&appid=" +
+    weatherApiId
+)
+  .then((response) => response.json())
+  .then((data) => {
+    let name = data["name"];
+    let temp = data["main"]["temp"];
+    let desc = data["weather"][0]["description"];
+    console.log(data);
+
+    let element = document.createElement("div");
+    element.id = ("weatherdiv");
+    let parent = document.getElementById("weather-container");
+    parent.appendChild(element);
+
+    element = document.createElement("h4");
+    element.innerText = "Temperature: " + temp + " C°";
+    parent = document.getElementById("weatherdiv");
+    parent.appendChild(element);
+
+    element = document.createElement("h5");
+    element.innerText = "Weather: " + desc;
+    parent = document.getElementById("weatherdiv");
+    parent.appendChild(element);
+
+    element = document.createElement("h5");
+    element.innerText = "Date: " + date;
+    parent = document.getElementById("weatherdiv");
+    parent.appendChild(element);
+
+    element = document.createElement("img");
+    element.src = "http://openweathermap.org/img/w/"+data.weather[0].icon+".png"
+    parent = document.getElementById("weatherdiv");
+    parent.appendChild(element);
+  });
 }
