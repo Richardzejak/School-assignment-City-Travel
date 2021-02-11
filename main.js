@@ -19,10 +19,6 @@ let date =
   today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
 
 let titleName = document.getElementById("titlename");
-let currentWeather = document.getElementById("currentweather");
-let currentDate = document.getElementById("currentdate");
-let currentTemp = document.getElementById("currenttemp");
-let currentCondition = document.getElementById("currentcondition");
 
 document.getElementById("flexbox-container").style.visibility = "hidden";
 
@@ -80,7 +76,13 @@ function searchattractions(){
       foursquareClientSecret +
       "&v=20170109"
   )
-    .then((response) => response.json())
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+      alert("Couldn't find attractions for entered city, try check your spelling.");
+    }
+  })
     .then((data) => {
       console.log(data);
       titleName.innerText = data.response.geocode.displayString;
@@ -121,7 +123,13 @@ fetch(
     "&appid=" +
     weatherApiId
 )
-  .then((response) => response.json())
+.then((response) => {
+  if (response.ok) {
+    return response.json();
+  } else {
+  alert("couldn't find weather for city you've entered, try check your spelling.");
+}
+})
   .then((data) => {
     let name = data["name"];
     let temp = data["main"]["temp"];
