@@ -76,12 +76,12 @@ function searchattractions(){
       foursquareClientSecret +
       "&v=20170109"
   )
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-      alert("Couldn't find attractions for entered city, try check your spelling.");
-    }
+  .then((response) => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      alert("Foursquare API. Error code: "+ response.status + ". Check Spelling.");
+  }
   })
     .then((data) => {
       console.log(data);
@@ -127,7 +127,7 @@ fetch(
   if (response.ok) {
     return response.json();
   } else {
-  alert("couldn't find weather for city you've entered, try check your spelling.");
+  alert("Openweather API. Error code: " + response.status + " " + response.statusText);
 }
 })
   .then((data) => {

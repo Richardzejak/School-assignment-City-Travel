@@ -93,7 +93,7 @@ h2 {
 .weathercontainer > div {
   width: 200px;
   margin: 10px;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.2);
   border-radius: 10%;
   font-family: "Lato", sans-serif;
   padding: 20px;
@@ -115,7 +115,7 @@ h2 {
   width: 200px;
   height: 200px;
   margin: 10px;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.2);
   border-radius: 10%;
   font-family: "Lato", sans-serif;
   padding: 20px;
