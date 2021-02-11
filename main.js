@@ -43,6 +43,10 @@ function searchevent() {
      document.getElementById("div"+i).remove();
     }
   }
+  if (document.getElementById("weather-container").childElementCount!== 0)
+  {
+    document.getElementById("weatherdiv").remove();
+  }
 
   if (constructedSite == false) {
     siteconstructor();
@@ -50,6 +54,7 @@ function searchevent() {
   else{
     if (onlyWeatherBox.checked == true) {
       searchweather();
+      getname();
     } else if (onlyAttractionsbox.checked == true) {
       searchattractions();
     } else {
@@ -147,5 +152,21 @@ fetch(
     element.src = "http://openweathermap.org/img/w/"+data.weather[0].icon+".png"
     parent = document.getElementById("weatherdiv");
     parent.appendChild(element);
+  });
+}
+
+function getname(){
+  fetch(
+    "https://api.foursquare.com/v2/venues/explore?near=" +
+      searchBox.value +
+      "&client_id=" +
+      foursquareClientId +
+      "&client_secret=" +
+      foursquareClientSecret +
+      "&v=20170109"
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      titleName.innerText = data.response.geocode.displayString;
   });
 }
