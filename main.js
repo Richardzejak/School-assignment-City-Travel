@@ -94,29 +94,32 @@ function searchevent() {
         console.log(data);
         titleName.innerText = data.response.geocode.displayString;
 
-        a1name.innerText = data.response.groups[0].items[0].venue.name;
-        a1adress.innerText =
-          data.response.groups[0].items[0].venue.location.address +
-          " " +
-          data.response.groups[0].items[0].venue.location.city;
-        a1category.innerText =
-          data.response.groups[0].items[0].venue.categories[0].name;
+        if (filterAlpha.checked == true) {
+        } else {
+          a1name.innerText = data.response.groups[0].items[0].venue.name;
+          a1adress.innerText =
+            data.response.groups[0].items[0].venue.location.address +
+            " " +
+            data.response.groups[0].items[0].venue.location.city;
+          a1category.innerText =
+            data.response.groups[0].items[0].venue.categories[0].name;
 
-        a2name.innerText = data.response.groups[0].items[1].venue.name;
-        a2adress.innerText =
-          data.response.groups[0].items[1].venue.location.address +
-          " " +
-          data.response.groups[0].items[1].venue.location.city;
-        a2category.innerText =
-          data.response.groups[0].items[1].venue.categories[0].name;
+          a2name.innerText = data.response.groups[0].items[1].venue.name;
+          a2adress.innerText =
+            data.response.groups[0].items[1].venue.location.address +
+            " " +
+            data.response.groups[0].items[1].venue.location.city;
+          a2category.innerText =
+            data.response.groups[0].items[1].venue.categories[0].name;
 
-        a3name.innerText = data.response.groups[0].items[2].venue.name;
-        a3adress.innerText =
-          data.response.groups[0].items[2].venue.location.address +
-          " " +
-          data.response.groups[0].items[2].venue.location.city;
-        a3category.innerText =
-          data.response.groups[0].items[2].venue.categories[0].name;
+          a3name.innerText = data.response.groups[0].items[2].venue.name;
+          a3adress.innerText =
+            data.response.groups[0].items[2].venue.location.address +
+            " " +
+            data.response.groups[0].items[2].venue.location.city;
+          a3category.innerText =
+            data.response.groups[0].items[2].venue.categories[0].name;
+        }
       });
   }
 }
