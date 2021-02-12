@@ -91,14 +91,13 @@ function searchattractions(){
 
       if (filterAlpha.checked == true)
       {
-        data.response.groups[0].items.sort(data.response.groups[0].items.venue.name[0], data.response.groups[0].items.venue.name[1], data.response.groups[0].items.venue.name[2]);
+        data.response.groups[0].items.sort((a, b) => a.venue.name.localeCompare(b.venue.name));
       }
       if (data.response.groups[0].items.length < 1)
       {
-      alert("Sorry no attractions here.");
+        alert("Sorry no attractions here.");
       }
-      else
-      {
+
         for(i = 0; i < 3; i++) {
           let element = document.createElement("div");
           element.id = ("div"+i);
@@ -122,7 +121,6 @@ function searchattractions(){
           parent = document.getElementById("div"+i);
           parent.appendChild(element);
         }
-        }
     });
   }
 function searchweather(){
@@ -140,7 +138,6 @@ fetch(
 }
 })
   .then((data) => {
-    let name = data["name"];
     let temp = data["main"]["temp"];
     let desc = data["weather"][0]["description"];
     console.log(data);
