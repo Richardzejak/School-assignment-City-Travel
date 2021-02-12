@@ -84,7 +84,7 @@ function searchattractions(){
     } else {
       alert("Foursquare API. Error code: "+ response.status + ". Check Spelling.");
   }
-  })
+  }).catch((e) => alert(e))
     .then((data) => {
       console.log(data);
       titleName.innerText = data.response.geocode.displayString;
